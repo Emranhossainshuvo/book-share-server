@@ -28,6 +28,11 @@ async function run() {
         res.send(result)
     })
 
+    app.get("/books", async(req, res)=> {
+        const result = await bookCollection.find().toArray();
+        res.send(result);
+    })
+
     app.get("/", (req, res) => {
         res.send("hello world")
     })
