@@ -19,12 +19,19 @@ const client = new MongoClient(uri, {
 });
 async function run() {
 
-    const bookCollection = client.db('bookswap').collection('allbooks'); 
+    const bookCollection = client.db('bookswap').collection('allbooks');
+    const usersCollection = client.db('bookswap').collection('users'); 
 
 
     app.post("/books",  async(req, res) => {
         const book = req.body; 
         const result = await bookCollection.insertOne(book)
+        res.send(result)
+    })
+
+    app.post("/users",  async(req, res) => {
+        const user = req.body; 
+        const result = await usersCollection.insertOne(user)
         res.send(result)
     })
 
