@@ -47,6 +47,11 @@ async function run() {
         res.send(result);
     })
 
+    app.get("/favorites", async(req, res) => {
+        const result = await favoritesCollection.find().toArray();
+        res.send(result)
+    })
+
     app.get("/users", async(req, res)=> {
         const result = await usersCollection.find().toArray();
         res.send(result);
