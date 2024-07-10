@@ -21,11 +21,18 @@ async function run() {
 
     const bookCollection = client.db('bookswap').collection('allbooks');
     const usersCollection = client.db('bookswap').collection('users'); 
+    const favoritesCollection = client.db('bookswap').collection('favorites');
 
 
     app.post("/books",  async(req, res) => {
         const book = req.body; 
         const result = await bookCollection.insertOne(book)
+        res.send(result)
+    })
+
+    app.post("/favorites", async(req, res) => {
+        const favorite = req.body;
+        const result = await favoritesCollection.insertOne(favorite);
         res.send(result)
     })
 
